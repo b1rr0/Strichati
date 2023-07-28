@@ -1,23 +1,21 @@
 package tokyo.ronin.tg.datebot.service;
 
 import com.byteowls.jopencage.JOpenCageGeocoder;
-import com.byteowls.jopencage.model.JOpenCageComponents;
-import com.byteowls.jopencage.model.JOpenCageForwardRequest;
-import com.byteowls.jopencage.model.JOpenCageLatLng;
-import com.byteowls.jopencage.model.JOpenCageResponse;
-import com.byteowls.jopencage.model.JOpenCageResult;
-import com.byteowls.jopencage.model.JOpenCageReverseRequest;
-
+import com.byteowls.jopencage.model.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Location;
 import tokyo.ronin.tg.datebot.entity.Person;
+import tokyo.ronin.tg.datebot.resource.JOpenResource;
 
 @Service
 public class LocationService {
 
-    static JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("9a1b1c8182c74e65b273c633afd5a247");
+    private final JOpenCageGeocoder jOpenCageGeocoder;
 
+    public LocationService(JOpenResource jOpenResource) {
+        this.jOpenCageGeocoder = new JOpenCageGeocoder(jOpenResource.getSecret());
+    }
 
     public void setLocationToPerson(Person person, String message) {
 

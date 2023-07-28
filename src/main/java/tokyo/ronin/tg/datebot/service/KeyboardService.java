@@ -1,28 +1,27 @@
 package tokyo.ronin.tg.datebot.service;
 
 import org.springframework.stereotype.Service;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import tokyo.ronin.tg.datebot.contoller.Status;
+import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 import tokyo.ronin.tg.datebot.keyboards.Description;
 
 @Service
 public class KeyboardService {
 
-    private Map<Status, ReplyKeyboardMarkup> map = new HashMap<>();
+    private Map<PersonStatus, ReplyKeyboardMarkup> map = new HashMap<>();
 
     public KeyboardService() {
         init();
     }
 
-    public ReplyKeyboardMarkup getKeyboard(Status status){
-        return  map.get(status);
+    public ReplyKeyboardMarkup getKeyboard(PersonStatus personStatus){
+        return  map.get(personStatus);
     }
     private void init() {
-      map.put(Status.SETTING_LOCATION, Description.locationKeyboard());
+      map.put(PersonStatus.SETTING_LOCATION, Description.locationKeyboard());
     }
 }

@@ -3,27 +3,39 @@ package tokyo.ronin.tg.datebot.contoller.impl;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import tokyo.ronin.tg.datebot.contoller.Status;
+import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
 import tokyo.ronin.tg.datebot.constant.Language;
 import tokyo.ronin.tg.datebot.entity.Person;
 import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
+import tokyo.ronin.tg.datebot.service.SenderService;
+import tokyo.ronin.tg.datebot.statemachine.person.PersonStateMachineService;
 
 @Service
 public class LanguageController implements StatusController {
+    private final PersonStateMachineService stateMachine;
+    private final SenderService senderService;
 
-    @Override
-    public Status status() {
-        return Status.LANGUAGE;
+    public LanguageController(PersonStateMachineService stateMachine, SenderService senderService) {
+        this.stateMachine = stateMachine;
+        this.senderService = senderService;
     }
 
     @Override
-    public void handle(Update update, PersonWithMessageQueue personWithMessageQueue) {
-        Person person = personWithMessageQueue.getPerson();
-        var v = Language.valueOf(update.getMessage()
-                .getText());
+    public PersonStatus status() {
+        return PersonStatus.LANGUAGE;
+    }
 
-        person.setLanguage(v);
-        person.setStatus(Status.DEFAULT);
+    @Override
+    public boolean handle(Update update, PersonWithMessageQueue personWithMessageQueue) {
+        Person person = personWithMessageQueue.getPerson();
+        Language language = Language.getByData(update.getMessage().getText());
+
+        if (language == null) {
+            return false;
+        }
+
+        person.setLanguage(language);
+        return   stateMachine.transition(personWithMessageQueue, PersonStatus.DEFAULT);
     }
 }

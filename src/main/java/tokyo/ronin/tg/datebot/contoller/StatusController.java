@@ -6,7 +6,6 @@ import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
 
 
 public interface StatusController {
-    Status status();
-    void handle(Update update, PersonWithMessageQueue person);
-
+    PersonStatus status();
+    boolean handle(Update update, PersonWithMessageQueue person);
 }

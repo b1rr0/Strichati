@@ -3,11 +3,11 @@ package tokyo.ronin.tg.datebot.entity;
 import java.util.StringJoiner;
 
 import tokyo.ronin.tg.datebot.constant.Language;
-import tokyo.ronin.tg.datebot.contoller.Status;
+import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 
 public class Person {
     private Long id;
-    private Status status = Status.DEFAULT;
+    private PersonStatus personStatus = PersonStatus.DEFAULT;
     private Geometry geometry = new Geometry();
     private Language language = Language.ENGLISH;
 
@@ -20,8 +20,8 @@ public class Person {
         return this;
     }
 
-    public Status getStatus() {
-        return status;
+    public PersonStatus getStatus() {
+        return personStatus;
     }
 
     public Language getLanguage() {
@@ -33,8 +33,8 @@ public class Person {
         return this;
     }
 
-    public Person setStatus(Status status) {
-        this.status = status;
+    public Person setStatus(PersonStatus personStatus) {
+        this.personStatus = personStatus;
         return this;
     }
 
@@ -51,7 +51,7 @@ public class Person {
     public String toString() {
         return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
-                .add("status=" + status)
+                .add("status=" + personStatus)
                 .add("geometry=" + geometry)
                 .add("language=" + language)
                 .toString();

@@ -5,34 +5,34 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Objects;
 
-import tokyo.ronin.tg.datebot.contoller.Status;
+import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
 import tokyo.ronin.tg.datebot.entity.Person;
 import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
-import tokyo.ronin.tg.datebot.stateMachine.Machine;
+import tokyo.ronin.tg.datebot.statemachine.person.PersonStateMachineService;
 
 @Component
 public class DefaultController implements StatusController {
-    public DefaultController(Machine machine) {
-        this.machine = machine;
+    private final PersonStateMachineService stateMachine;
+
+    public DefaultController(PersonStateMachineService stateMachine) {
+        this.stateMachine = stateMachine;
     }
 
     @Override
-    public Status status() {
-        return Status.DEFAULT;
+    public PersonStatus status() {
+        return PersonStatus.DEFAULT;
     }
 
-    private final Machine machine;
-
     @Override
-    public void handle(Update update, PersonWithMessageQueue personWithMessageQueue) {
-        Person person = personWithMessageQueue.getPerson();
-        if (Objects.equals(update.getMessage()
-                .getText(), "lang")) {
-            person.setStatus(Status.LANGUAGE);
+    public boolean handle(Update update, PersonWithMessageQueue personWithMessageQueue) {
+        if (Objects.equals(update.getMessage().getText(), "lang")) {
+            stateMachine.transition(personWithMessageQueue, PersonStatus.LANGUAGE);
         }
+
         if (Objects.equals(update.getMessage().getText(), "loc")) {
-            machine.entryLocationStatus(personWithMessageQueue);
+            stateMachine.transition(personWithMessageQueue, PersonStatus.SETTING_LOCATION);
         }
+        return true;
     }
 }
