@@ -1,40 +1,41 @@
 package tokyo.ronin.tg.datebot.entity;
 
-import java.util.StringJoiner;
 
 import tokyo.ronin.tg.datebot.constant.Language;
 import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 
 public class Person {
     private Long id;
-    private PersonStatus personStatus = PersonStatus.DEFAULT;
+    private Biography biography = new Biography();
+    private String linkTelegraph;
     private Geometry geometry = new Geometry();
+    private PersonStatus personStatus = PersonStatus.DEFAULT;
     private Language language = Language.ENGLISH;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Person setId(long id) {
+    public Person setId(Long id) {
         this.id = id;
         return this;
     }
 
-    public PersonStatus getStatus() {
-        return personStatus;
+    public Biography getBiography() {
+        return biography;
     }
 
-    public Language getLanguage() {
-        return language;
+    public String getLinkTelegraph() {
+        return linkTelegraph;
     }
 
-    public Person setLanguage(Language language) {
-        this.language = language;
+    public Person setLinkTelegraph(String linkTelegraph) {
+        this.linkTelegraph = linkTelegraph;
         return this;
     }
 
-    public Person setStatus(PersonStatus personStatus) {
-        this.personStatus = personStatus;
+    public Person setBiography(Biography biography) {
+        this.biography = biography;
         return this;
     }
 
@@ -47,14 +48,22 @@ public class Person {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("status=" + personStatus)
-                .add("geometry=" + geometry)
-                .add("language=" + language)
-                .toString();
+    public PersonStatus getStatus() {
+        return personStatus;
+    }
+
+    public Person setStatus(PersonStatus personStatus) {
+        this.personStatus = personStatus;
+        return this;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public Person setLanguage(Language language) {
+        this.language = language;
+        return this;
     }
 }
 

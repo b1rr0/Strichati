@@ -7,7 +7,6 @@ import java.util.Objects;
 
 import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
-import tokyo.ronin.tg.datebot.entity.Person;
 import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.statemachine.person.PersonStateMachineService;
 
@@ -26,6 +25,10 @@ public class DefaultController implements StatusController {
 
     @Override
     public boolean handle(Update update, PersonWithMessageQueue personWithMessageQueue) {
+        if (Objects.equals(update.getMessage().getText(), "bio")) {
+            stateMachine.transition(personWithMessageQueue, PersonStatus.BIOGRAPHY);
+        }
+
         if (Objects.equals(update.getMessage().getText(), "lang")) {
             stateMachine.transition(personWithMessageQueue, PersonStatus.LANGUAGE);
         }
