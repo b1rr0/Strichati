@@ -3,9 +3,9 @@ package tokyo.ronin.tg.datebot.service;
 import org.springframework.stereotype.Service;
 import tokyo.ronin.tg.datebot.entity.Biography;
 import tokyo.ronin.tg.datebot.entity.Person;
-import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
+import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.telegraph.TelegraphStory;
-import tokyo.ronin.tg.datebot.telegraph.service.TelegraphRestService;
+import tokyo.ronin.tg.datebot.service.theard.TelegraphRestService;
 
 @Service
 public class TelegraphService {

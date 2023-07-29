@@ -1,7 +1,6 @@
 package tokyo.ronin.tg.datebot.telegraph.response;
 
 public class AccountResponse {
-
     public class Result {
         private String short_name;
         private String author_name;
@@ -55,24 +54,24 @@ public class AccountResponse {
         }
     }
 
-        private boolean ok;
-        private Result result;
+    private boolean ok;
+    private Result result;
 
-        public boolean isOk() {
-            return ok;
-        }
+    public boolean isOk() {
+        return ok;
+    }
 
-        public AccountResponse setOk(boolean ok) {
-            this.ok = ok;
-            return this;
-        }
+    public AccountResponse setOk(boolean ok) {
+        this.ok = ok;
+        return this;
+    }
 
-        public Result getResult() {
-            return result;
-        }
+    public Result getResult() {
+        return result;
+    }
 
-        public AccountResponse setResult(Result result) {
-            this.result = result;
-            return this;
-        }
+    public AccountResponse setResult(Result result) {
+        this.result = result;
+        return this;
+    }
 }

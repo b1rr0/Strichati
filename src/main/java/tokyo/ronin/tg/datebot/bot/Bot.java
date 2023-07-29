@@ -1,23 +1,21 @@
 package tokyo.ronin.tg.datebot.bot;
 
+import jakarta.annotation.Resource;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-import java.util.Map;
-
-import jakarta.annotation.Resource;
-import jakarta.validation.constraints.NotNull;
+import tokyo.ronin.tg.datebot.contoller.PersonStatus;
+import tokyo.ronin.tg.datebot.contoller.StatusController;
 import tokyo.ronin.tg.datebot.entity.Person;
-import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
+import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.repository.UserRepository;
 import tokyo.ronin.tg.datebot.resource.BotResource;
-import tokyo.ronin.tg.datebot.contoller.StatusController;
-import tokyo.ronin.tg.datebot.contoller.PersonStatus;
+
+import java.util.Map;
 
 @Component
 public class Bot extends TelegramLongPollingBot {

@@ -1,14 +1,14 @@
-package tokyo.ronin.tg.datebot.entity;
+package tokyo.ronin.tg.datebot.models;
 
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage;
+import tokyo.ronin.tg.datebot.entity.Person;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersonWithMessageQueue {
-    private List<BotApiMethod<?>> messages = new ArrayList<>();
+    private final List<BotApiMethod<?>> messages = new ArrayList<>();
     private Person person;
 
     public PersonWithMessageQueue(Person person) {

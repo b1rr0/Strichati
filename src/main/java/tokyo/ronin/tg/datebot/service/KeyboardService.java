@@ -12,7 +12,7 @@ import tokyo.ronin.tg.datebot.keyboards.Description;
 @Service
 public class KeyboardService {
 
-    private Map<PersonStatus, ReplyKeyboardMarkup> map = new HashMap<>();
+    private final Map<PersonStatus, ReplyKeyboardMarkup> map = new HashMap<>();
 
     public KeyboardService() {
         init();

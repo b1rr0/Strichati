@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
-import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
+import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.statemachine.person.PersonStateMachineService;
 
 @Component

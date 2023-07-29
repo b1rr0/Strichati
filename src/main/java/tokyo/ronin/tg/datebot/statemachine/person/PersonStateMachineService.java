@@ -3,7 +3,7 @@ package tokyo.ronin.tg.datebot.statemachine.person;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 import tokyo.ronin.tg.datebot.contoller.PersonStatus;
-import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
+import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 
 import java.util.Map;
 

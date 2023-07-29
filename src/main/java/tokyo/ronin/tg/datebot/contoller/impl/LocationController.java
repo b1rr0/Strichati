@@ -7,8 +7,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
 import tokyo.ronin.tg.datebot.entity.Person;
-import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
-import tokyo.ronin.tg.datebot.service.LocationService;
+import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
+import tokyo.ronin.tg.datebot.service.theard.LocationService;
 import tokyo.ronin.tg.datebot.statemachine.person.PersonStateMachineService;
 
 @Service

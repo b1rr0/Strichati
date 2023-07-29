@@ -1,4 +1,4 @@
-package tokyo.ronin.tg.datebot.service;
+package tokyo.ronin.tg.datebot.service.theard;
 
 import com.byteowls.jopencage.JOpenCageGeocoder;
 import com.byteowls.jopencage.model.*;

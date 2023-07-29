@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
-import tokyo.ronin.tg.datebot.entity.PersonWithMessageQueue;
+import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.service.TelegraphService;
 import tokyo.ronin.tg.datebot.statemachine.person.PersonStateMachineService;
 

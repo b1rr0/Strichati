@@ -1,4 +1,4 @@
-package tokyo.ronin.tg.datebot.telegraph.service;
+package tokyo.ronin.tg.datebot.service.theard;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;

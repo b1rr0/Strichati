@@ -1,5 +1,7 @@
 package tokyo.ronin.tg.datebot.entity;
 
+import tokyo.ronin.tg.datebot.constant.Expectation;
+
 import java.time.Instant;
 import java.util.List;
 
