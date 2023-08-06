@@ -27,7 +27,7 @@ public class PersonStateMachineBiography implements PersonStateMachine {
     }
 
     @Override
-    public void entryAction(PersonWithMessageQueue personWithMessageQueue) {
+    public void afterEntryAction(PersonWithMessageQueue personWithMessageQueue) {
         senderService.addMessageToQueue(personWithMessageQueue, "sd" + personWithMessageQueue.getPerson().getLinkTelegraph());
     }
 }

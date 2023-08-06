@@ -21,7 +21,7 @@ public class SenderService {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(person.getId());
         sendMessage.setText(text);
-        sendMessage.setReplyMarkup(keyboardService.getKeyboard(person.getStatus()));
+        sendMessage.setReplyMarkup(keyboardService.getKeyboard(person.getLanguage(), person.getStatus()));
         personWithMessageQueue.addMessage(sendMessage);
     }
 

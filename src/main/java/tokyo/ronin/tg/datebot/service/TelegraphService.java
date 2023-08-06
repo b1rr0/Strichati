@@ -5,7 +5,7 @@ import tokyo.ronin.tg.datebot.entity.Biography;
 import tokyo.ronin.tg.datebot.entity.Person;
 import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.telegraph.TelegraphStory;
-import tokyo.ronin.tg.datebot.service.theard.TelegraphRestService;
+import tokyo.ronin.tg.datebot.service.third.TelegraphRestService;
 
 @Service
 public class TelegraphService {

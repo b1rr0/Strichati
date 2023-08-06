@@ -65,5 +65,17 @@ public class Person {
         this.language = language;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", biography=" + biography +
+                ", linkTelegraph='" + linkTelegraph + '\'' +
+                ", geometry=" + geometry +
+                ", personStatus=" + personStatus +
+                ", language=" + language +
+                '}';
+    }
 }
 

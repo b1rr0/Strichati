@@ -8,7 +8,7 @@ import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
 import tokyo.ronin.tg.datebot.entity.Person;
 import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
-import tokyo.ronin.tg.datebot.service.theard.LocationService;
+import tokyo.ronin.tg.datebot.service.third.LocationService;
 import tokyo.ronin.tg.datebot.statemachine.person.PersonStateMachineService;
 
 @Service

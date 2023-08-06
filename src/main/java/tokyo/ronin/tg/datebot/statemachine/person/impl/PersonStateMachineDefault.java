@@ -3,6 +3,7 @@ package tokyo.ronin.tg.datebot.statemachine.person.impl;
 import org.springframework.stereotype.Component;
 import tokyo.ronin.tg.datebot.contoller.PersonStatus;
 import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
+import tokyo.ronin.tg.datebot.service.LocalizationService;
 import tokyo.ronin.tg.datebot.service.SenderService;
 import tokyo.ronin.tg.datebot.statemachine.person.PersonStateMachine;
 
@@ -28,7 +29,8 @@ public class PersonStateMachineDefault implements PersonStateMachine {
     }
 
     @Override
-    public void entryAction(PersonWithMessageQueue personWithMessageQueue) {
-        senderService.addMessageToQueue(personWithMessageQueue, "вы в дефолте");
+    public void afterEntryAction(PersonWithMessageQueue personWithMessageQueue) {
+        senderService.addMessageToQueue(personWithMessageQueue,
+                LocalizationService.getData(personWithMessageQueue.getPerson().getLanguage(), "defaultPage"));
     }
 }

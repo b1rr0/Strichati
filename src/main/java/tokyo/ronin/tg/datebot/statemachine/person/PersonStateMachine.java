@@ -19,10 +19,10 @@ public interface PersonStateMachine {
             return false;
         }
 
-        entryAction(personWithMessageQueue);
         person.setStatus(status());
+        afterEntryAction(personWithMessageQueue);
         return true;
     }
 
-    void entryAction(PersonWithMessageQueue personWithMessageQueue);
+    void afterEntryAction(PersonWithMessageQueue personWithMessageQueue);
 }

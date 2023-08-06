@@ -28,7 +28,7 @@ public class PersonStateMachineLocation implements PersonStateMachine {
     }
 
     @Override
-    public void entryAction(PersonWithMessageQueue personWithMessageQueue) {
+    public void afterEntryAction(PersonWithMessageQueue personWithMessageQueue) {
         senderService.addMessageToQueue(personWithMessageQueue, "Напишите город или укажите локацию");
     }
 }

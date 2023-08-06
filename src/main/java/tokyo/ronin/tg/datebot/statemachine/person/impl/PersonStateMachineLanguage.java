@@ -27,7 +27,7 @@ public class PersonStateMachineLanguage implements PersonStateMachine {
     }
 
     @Override
-    public void entryAction(PersonWithMessageQueue personWithMessageQueue) {
+    public void afterEntryAction(PersonWithMessageQueue personWithMessageQueue) {
         senderService.addMessageToQueue(personWithMessageQueue, "Выберете язык");
     }
 }
