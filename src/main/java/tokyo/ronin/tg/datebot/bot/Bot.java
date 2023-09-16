@@ -8,28 +8,29 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import tokyo.ronin.tg.datebot.contoller.PersonStatus;
+import tokyo.ronin.tg.datebot.contoller.UserStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
-import tokyo.ronin.tg.datebot.entity.Person;
+import tokyo.ronin.tg.datebot.entity.UserEntity;
 import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
-import tokyo.ronin.tg.datebot.repository.UserRepository;
 import tokyo.ronin.tg.datebot.resource.BotResource;
+import tokyo.ronin.tg.datebot.service.UserService;
 
 import java.util.Map;
+import java.util.Queue;
 
 @Component
 public class Bot extends TelegramLongPollingBot {
 
     final private BotResource botResource;
-    final private UserRepository userRepository;
+    final private UserService userService;
 
     @Resource
-    Map<PersonStatus, StatusController> controllerNameToControllerMap;
+    private Map<UserStatus, StatusController> controllersMap;
 
     @Autowired
-    public Bot(BotResource config, UserRepository userRepository) {
+    public Bot(BotResource config, UserService userService) {
         this.botResource = config;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -44,20 +45,24 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(@NotNull Update update) {
-        Person person = userRepository.getUserById(update.getMessage()
-                .getChatId());
-        PersonWithMessageQueue personWithMessageQueue = new PersonWithMessageQueue(person);
-        boolean isPositive = controllerNameToControllerMap.get(person.getStatus())
-                .handle(update, personWithMessageQueue);
+        UserEntity userEntity = userService.getOrCreate(update.getMessage().getChatId());
 
-        for (BotApiMethod<?> message : personWithMessageQueue.getMessages()) {
+        PersonWithMessageQueue personWithMessageQueue = new PersonWithMessageQueue(userEntity);
+
+        if (controllersMap.get(userEntity.getStatus()).handle(update, personWithMessageQueue)) {
+            userService.update(personWithMessageQueue.getPerson());
+        }
+
+        execute(personWithMessageQueue.getMessages());
+    }
+
+    private void execute(Queue<BotApiMethod<?>> methodsQueue) {
+        for (BotApiMethod<?> message : methodsQueue) {
             try {
                 execute(message);
             } catch (TelegramApiException e) {
                 throw new RuntimeException(e);
             }
         }
-        if (isPositive) userRepository.update(personWithMessageQueue.getPerson());
-        System.out.println(personWithMessageQueue);
     }
 }

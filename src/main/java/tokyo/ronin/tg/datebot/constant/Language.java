@@ -1,5 +1,8 @@
 package tokyo.ronin.tg.datebot.constant;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum Language {
     UKRAINE("ua"), ENGLISH("en");
     private final String data;
@@ -12,12 +15,9 @@ public enum Language {
         return data;
     }
 
-    public static Language getByData(String data) {
-        for (Language languageCode : values()) {
-            if (languageCode.data.equals(data)) {
-                return languageCode;
-            }
-        }
-        return null;
+    public static Optional<Language> getByData(String data) {
+        return Arrays.stream(values())
+                .filter(languageCode -> languageCode.data.equals(data))
+                .findFirst();
     }
 }

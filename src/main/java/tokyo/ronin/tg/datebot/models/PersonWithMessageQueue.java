@@ -2,20 +2,20 @@ package tokyo.ronin.tg.datebot.models;
 
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage;
-import tokyo.ronin.tg.datebot.entity.Person;
+import tokyo.ronin.tg.datebot.entity.UserEntity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PersonWithMessageQueue {
-    private final List<BotApiMethod<?>> messages = new ArrayList<>();
-    private Person person;
+    private final Queue<BotApiMethod<?>> messages = new LinkedList<>();
+    private UserEntity userEntity;
 
-    public PersonWithMessageQueue(Person person) {
-        this.person = person;
+    public PersonWithMessageQueue(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
-    public List<BotApiMethod<?>> getMessages() {
+    public Queue<BotApiMethod<?>> getMessages() {
         return messages;
     }
 
@@ -23,12 +23,12 @@ public class PersonWithMessageQueue {
         messages.add(message);
     }
 
-    public Person getPerson() {
-        return person;
+    public UserEntity getPerson() {
+        return userEntity;
     }
 
-    public PersonWithMessageQueue setPerson(Person person) {
-        this.person = person;
+    public PersonWithMessageQueue setPerson(UserEntity userEntity) {
+        this.userEntity = userEntity;
         return this;
     }
 
@@ -36,7 +36,7 @@ public class PersonWithMessageQueue {
     public String toString() {
         return "PersonWithMessageQueue{" +
                 "messages=" + messages +
-                ", person=" + person +
+                ", person=" + userEntity +
                 '}';
     }
 }

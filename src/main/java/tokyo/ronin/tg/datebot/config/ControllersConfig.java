@@ -2,7 +2,7 @@ package tokyo.ronin.tg.datebot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import tokyo.ronin.tg.datebot.contoller.PersonStatus;
+import tokyo.ronin.tg.datebot.contoller.UserStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
 
 import java.util.HashMap;
@@ -18,8 +18,8 @@ public class ControllersConfig {
     }
 
     @Bean
-    public Map<PersonStatus, StatusController> controllerNameToControllerMap() {
-        Map<PersonStatus, StatusController> statusMap = new HashMap<>();
+    public Map<UserStatus, StatusController> controllersMap() {
+        Map<UserStatus, StatusController> statusMap = new HashMap<>();
         controllers.forEach(controller -> statusMap.put(controller.status(), controller));
         return statusMap;
     }

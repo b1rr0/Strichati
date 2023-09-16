@@ -1,5 +1,5 @@
 package tokyo.ronin.tg.datebot.contoller;
 
-public enum PersonStatus {
+public enum UserStatus {
     DEFAULT, SETTING_LOCATION, LANGUAGE, BIOGRAPHY
 }

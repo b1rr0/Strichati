@@ -2,29 +2,29 @@ package tokyo.ronin.tg.datebot.statemachine.person.impl;
 
 import org.springframework.stereotype.Component;
 
-import tokyo.ronin.tg.datebot.contoller.PersonStatus;
+import tokyo.ronin.tg.datebot.contoller.UserStatus;
 import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.service.SenderService;
-import tokyo.ronin.tg.datebot.statemachine.person.PersonStateMachine;
+import tokyo.ronin.tg.datebot.statemachine.person.UserStateMachine;
 
 import java.util.List;
 
 @Component
-public class PersonStateMachineLocation implements PersonStateMachine {
+public class UserStateMachineLocation implements UserStateMachine {
     private final SenderService senderService;
 
-    public PersonStateMachineLocation(SenderService senderService) {
+    public UserStateMachineLocation(SenderService senderService) {
         this.senderService = senderService;
     }
 
     @Override
-    public List<PersonStatus> transitionStatuses() {
-        return List.of(PersonStatus.DEFAULT);
+    public List<UserStatus> transitionStatuses() {
+        return List.of(UserStatus.DEFAULT);
     }
 
     @Override
-    public PersonStatus status() {
-        return PersonStatus.SETTING_LOCATION;
+    public UserStatus status() {
+        return UserStatus.SETTING_LOCATION;
     }
 
     @Override

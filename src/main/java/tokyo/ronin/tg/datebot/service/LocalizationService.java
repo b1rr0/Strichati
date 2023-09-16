@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 public class LocalizationService {
     static Map<Language, ResourceBundle> map = new HashMap<>();
+
     static {
         map.put(Language.UKRAINE, ResourceBundle.getBundle("i18n.ua"));
         map.put(Language.ENGLISH, ResourceBundle.getBundle("i18n.en"));
@@ -17,3 +18,4 @@ public class LocalizationService {
         return map.get(language).getString(key);
     }
 }
+

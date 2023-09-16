@@ -1,4 +1,4 @@
-package tokyo.ronin.tg.datebot.service.third;
+package tokyo.ronin.tg.datebot.service.external;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,11 +1,11 @@
 package tokyo.ronin.tg.datebot.service;
 
 import org.springframework.stereotype.Service;
-import tokyo.ronin.tg.datebot.entity.Biography;
-import tokyo.ronin.tg.datebot.entity.Person;
+import tokyo.ronin.tg.datebot.entity.BiographyEntity;
+import tokyo.ronin.tg.datebot.entity.UserEntity;
 import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.telegraph.TelegraphStory;
-import tokyo.ronin.tg.datebot.service.third.TelegraphRestService;
+import tokyo.ronin.tg.datebot.service.external.TelegraphRestService;
 
 @Service
 public class TelegraphService {
@@ -17,12 +17,12 @@ public class TelegraphService {
     }
 
     public void createOrUpdateTelegraph(PersonWithMessageQueue personWithMessageQueue) {
-        Person person = personWithMessageQueue.getPerson();
-        Biography biography = person.getBiography();
+        UserEntity userEntity = personWithMessageQueue.getPerson();
+        BiographyEntity biographyEntity = userEntity.getBiography();
 
         TelegraphStory telegraphStory = new TelegraphStory();
 
-        telegraphStory.setTitle(biography.getName());
+        telegraphStory.setTitle(biographyEntity.getName());
 
         telegraphStory.create()
                 .addWithStrongP("DA lublu tebya")
@@ -31,11 +31,11 @@ public class TelegraphService {
 
         telegraphStory.build();
         String storyLink;
-        if (person.getLinkTelegraph() == null) {
+        if (userEntity.getLinkTelegraph() == null) {
             storyLink = telegraphRestService.createTelegraphPage(telegraphStory);
-            person.setLinkTelegraph(storyLink);
+            userEntity.setLinkTelegraph(storyLink);
         } else {
-            storyLink = person.getLinkTelegraph();
+            storyLink = userEntity.getLinkTelegraph();
             telegraphRestService.editTelegraphStory(telegraphStory, storyLink);
         }
     }
