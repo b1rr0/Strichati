@@ -28,7 +28,7 @@ btn1.addEventListener("click", function(){
             }
         };
         item = JSON.stringify(myObject);
-        tg.MainButton.setText("Вы выбрали товар "+item);
+        tg.MainButton.setText("Вы выбрали товар datas");
 
 
         tg.MainButton.show();
