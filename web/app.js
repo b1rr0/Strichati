@@ -18,7 +18,7 @@ v = v.replaceAll('%22', "\"");
 v = v.replaceAll('%20', " ");
 var data = JSON.parse(v);
 
-document.getElementById('name').value = data.name || ''
+document.getElementById('name').value = data.name || `${tg.initDataUnsafe.user.id}`|| ''
 document.getElementById('about').value = data.about || ''
 document.getElementById('age').value = data.age || ''
 
