@@ -12,15 +12,18 @@ tg.MainButton.setText("Oбновить данные");
 
 var currentUrl = window.location.href;
 var urlParams = new URLSearchParams(currentUrl);
+
+// Получаем значение параметра 'name'
 var nameParam = urlParams.get('data');
 let v = currentUrl.replace('https://b1rr0.github.io/Strichati/web/?data=', '');
 v = v.replaceAll('%22', "\"");
 v = v.replaceAll('%20', " ");
 var data = JSON.parse(v);
+document.getElementById('rot').value = `${tg.initDataUnsafe.user.id}` || '';
 
-document.getElementById('name').value = data.name || `${tg.initDataUnsafe.user.id}`|| ''
-document.getElementById('about').value = data.about || ''
-document.getElementById('age').value = data.age || ''
+document.getElementById('name').value = data.name || '';
+document.getElementById('about').value = data.about || '';
+document.getElementById('age').value = data.age || '';
 
 Telegram.WebApp.onEvent("mainButtonClicked", function () {
     item = JSON.stringify(submitForm());
@@ -43,10 +46,7 @@ function submitForm() {
     }
 
     var userData = {
-        name: name,
-        about: about,
-        age: age,
-        gender: gender
+        name: name, about: about, age: age, gender: gender
     };
 
     return userData;
