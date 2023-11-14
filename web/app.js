@@ -35,9 +35,7 @@ btn1.addEventListener("click", function(){
     }
 });
 
-
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
+    console.log('71231231387128732872387')
     tg.sendData(item);
 });
-
-usercard.appendChild(p);
