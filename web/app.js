@@ -19,8 +19,7 @@ btn1.addEventListener("click", function(){
         tg.MainButton.hide();
     }
     else {
-        tg.MainButton.setText("Вы выбрали товар 1!");
-        var myObject = {
+               var myObject = {
     name: "John",
     age: 25,
     address: {
@@ -28,7 +27,10 @@ btn1.addEventListener("click", function(){
         country: "USA"
     }
 };
-item = JSON.stringify(myObject);
+        item = JSON.stringify(myObject);
+        tg.MainButton.setText("Вы выбрали товар "+item);
+ 
+
         tg.MainButton.show();
     }
 });
