@@ -11,15 +11,13 @@ tg.MainButton.show();
 tg.MainButton.setText("Oбновить данные");
 
 var currentUrl = window.location.href;
-var urlParams = new URLSearchParams(currentUrl);
-//var jsonString = '{"name": "John", "age": 25, "about": "New York"}';
-var data = JSON.parse(urlParams.get('data'));
+currentUrl.replace('https://b1rr0.github.io/Strichati/web/?data=', '');
+var data = JSON.parse(currentUrl);
 
 document.getElementById('name').value = data.name || ''
 document.getElementById('about').value = data.about || ''
 document.getElementById('age').value = data.age || ''
 
-document.getElementById('name').val
 
 Telegram.WebApp.onEvent("mainButtonClicked", function () {
     item = JSON.stringify(submitForm());
