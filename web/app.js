@@ -11,8 +11,7 @@ tg.MainButton.show();
 tg.MainButton.setText("Oбновить данные");
 
 var currentUrl = window.location.href;
-currentUrl.replace('https://b1rr0.github.io/Strichati/web/?data=', '');
-var data = JSON.parse(currentUrl);
+var data = JSON.parse(currentUrl.replace('https://b1rr0.github.io/Strichati/web/?data=', ''));
 
 document.getElementById('name').value = data.name || ''
 document.getElementById('about').value = data.about || ''
