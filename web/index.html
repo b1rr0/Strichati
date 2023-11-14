@@ -9,7 +9,7 @@
 
 <div class="profile-form">
     <h2>Ваш профиль</h2>
-    <form>
+    <form id="profileForm">
         <div class="form-group">
             <label for="name">Введите имя:</label>
             <input type="text" id="name" name="name" required>
@@ -35,13 +35,10 @@
             </label>
         </div>
 
-        <button class="btn" id="btn1">Send</button>
+        <button type="button" onclick="submitForm()">Отправить форму</button>
     </form>
 </div>
 <p>ROT HTML EBAL!!!!</p>
-<div class="usercard" id="usercard">
-
-</div>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="app.js"></script>
