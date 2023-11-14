@@ -6,11 +6,39 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body>
-<div class="item">
-    <button class="btn" id="btn1">Add</button>
+
+<div class="profile-form">
+    <h2>Ваш профиль</h2>
+    <form>
+        <div class="form-group">
+            <label for="name">Введите имя:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="about">О себе:</label>
+            <textarea id="about" name="about" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Возраст:</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+
+        <div class="form-group">
+            <label>Кого ищете:</label>
+            <label>
+                <input type="radio" name="gender" value="male"> Парень
+            </label>
+            <label>
+                <input type="radio" name="gender" value="female"> Девушку
+            </label>
+        </div>
+
+        <button class="btn" id="btn1">Send</button>
+    </form>
 </div>
-<p>rot ebal</p>
+<p>ROT HTML EBAL!!!!</p>
 <div class="usercard" id="usercard">
 
 </div>
