@@ -3,15 +3,25 @@ let tg = window.Telegram.WebApp;
 tg.expand();
 
 tg.MainButton.textColor = '#FFFFFF';
-tg.MainButton.color = '#2cab37';
+tg.MainButton.color = '#0007ff';
 
 let item = "";
 
 tg.MainButton.show();
 tg.MainButton.setText("Oбновить данные");
 
+var currentUrl = window.location.href;
+var urlParams = new URLSearchParams(currentUrl);
+//var jsonString = '{"name": "John", "age": 25, "about": "New York"}';
+var data = JSON.parse(urlParams.get('data'));
+
+document.getElementById('name').value = data.name || ''
+document.getElementById('about').value = data.about || ''
+document.getElementById('age').value = data.age || ''
+
+document.getElementById('name').val
+
 Telegram.WebApp.onEvent("mainButtonClicked", function () {
-    console.log('71231231387128732872387')
     item = JSON.stringify(submitForm());
     tg.sendData(item);
 });
@@ -31,7 +41,6 @@ function submitForm() {
         }
     }
 
-
     var userData = {
         name: name,
         about: about,
@@ -41,3 +50,4 @@ function submitForm() {
 
     return userData;
 }
+
