@@ -9,15 +9,15 @@ import tokyo.ronin.tg.datebot.entity.id.GeometryPos;
 @Table(name = "geometry")
 public class GeometryEntity {
     @EmbeddedId
-    private GeometryPos pos;
+    private GeometryPos geometryPos;
     private String placeName;
 
-    public GeometryPos getPos() {
-        return pos;
+    public GeometryPos getGeometryPos() {
+        return geometryPos;
     }
 
     public GeometryEntity setPos(GeometryPos geometryPos) {
-        this.pos = geometryPos;
+        this.geometryPos = geometryPos;
         return this;
     }
 

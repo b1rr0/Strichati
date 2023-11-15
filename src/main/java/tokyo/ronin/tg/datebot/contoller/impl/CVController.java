@@ -1,26 +1,26 @@
 package tokyo.ronin.tg.datebot.contoller.impl;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.Objects;
-
-import tokyo.ronin.tg.datebot.contoller.UserStatus;
 import tokyo.ronin.tg.datebot.contoller.StatusController;
+import tokyo.ronin.tg.datebot.contoller.UserStatus;
 import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.statemachine.person.UserStateMachineService;
 
-@Component
-public class DefaultController implements StatusController {
+@Service
+public class CVController implements StatusController {
     private final UserStateMachineService stateMachine;
 
-    public DefaultController(UserStateMachineService stateMachine) {
+    @Autowired
+    public CVController(UserStateMachineService stateMachine) {
         this.stateMachine = stateMachine;
     }
 
     @Override
     public UserStatus status() {
-        return UserStatus.DEFAULT;
+        return UserStatus.CV;
     }
 
     @Override
@@ -31,13 +31,16 @@ public class DefaultController implements StatusController {
 
         String msg = update.getMessage().getText();
         return switch (msg) {
-            case "1" -> stateMachine.transition(personWithMessageQueue, UserStatus.DEFAULT);
-            case "2" -> stateMachine.transition(personWithMessageQueue, UserStatus.CV);
-            case "3" -> stateMachine.transition(personWithMessageQueue, UserStatus.LANGUAGE);
+            case "1" -> stateMachine.transition(personWithMessageQueue, UserStatus.PHOTO);
+            case "2" -> stateMachine.transition(personWithMessageQueue, UserStatus.BIOGRAPHY);
+            case "3" -> stateMachine.transition(personWithMessageQueue, UserStatus.SETTING_LOCATION);
             case "4" -> stateMachine.transition(personWithMessageQueue, UserStatus.DEFAULT);
             default -> false;
         };
     }
-    //defaultPage=1. View profiles.\n2. My profile.\n3. Not searching anymore.\n***\n4. Invite friends to get more
-    // likes ð.
+
+    // photo
+    // bio
+    // location
+    // return
 }

@@ -1,6 +1,7 @@
 package tokyo.ronin.tg.datebot.statemachine.person.impl;
 
 import org.springframework.stereotype.Component;
+
 import tokyo.ronin.tg.datebot.contoller.UserStatus;
 import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
 import tokyo.ronin.tg.datebot.service.SenderService;
@@ -18,7 +19,7 @@ public class UserStateMachineBiography implements UserStateMachine {
 
     @Override
     public List<UserStatus> transitionStatuses() {
-        return List.of(UserStatus.DEFAULT);
+        return List.of(UserStatus.CV);
     }
 
     @Override
@@ -28,6 +29,12 @@ public class UserStateMachineBiography implements UserStateMachine {
 
     @Override
     public void afterEntryAction(PersonWithMessageQueue personWithMessageQueue) {
-        senderService.addMessageToQueue(personWithMessageQueue, personWithMessageQueue.getPerson().getLinkTelegraph());
+        if (personWithMessageQueue.getPerson()
+                .getLinkTelegraph() != null) {
+            senderService.addMessageToQueue(personWithMessageQueue, personWithMessageQueue.getPerson()
+                    .getLinkTelegraph());
+        } else {
+            senderService.addMessageToQueue(personWithMessageQueue, ";3");
+        }
     }
 }

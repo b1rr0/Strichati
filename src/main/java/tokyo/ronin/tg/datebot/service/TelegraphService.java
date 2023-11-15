@@ -1,6 +1,8 @@
 package tokyo.ronin.tg.datebot.service;
 
 import org.springframework.stereotype.Service;
+
+import tokyo.ronin.tg.datebot.constant.Language;
 import tokyo.ronin.tg.datebot.entity.BiographyEntity;
 import tokyo.ronin.tg.datebot.entity.UserEntity;
 import tokyo.ronin.tg.datebot.models.PersonWithMessageQueue;
@@ -17,26 +19,31 @@ public class TelegraphService {
     }
 
     public void createOrUpdateTelegraph(PersonWithMessageQueue personWithMessageQueue) {
-        UserEntity userEntity = personWithMessageQueue.getPerson();
-        BiographyEntity biographyEntity = userEntity.getBiography();
+        UserEntity person = personWithMessageQueue.getPerson();
 
+        TelegraphStory telegraphStory = buildTelegraphStory(person);
+
+        if (person.getLinkTelegraph() == null) {
+            person.setLinkTelegraph(telegraphRestService.createTelegraphPage(telegraphStory));
+        } else {
+            telegraphRestService.editTelegraphStory(telegraphStory, person.getLinkTelegraph());
+        }
+    }
+
+    //TODO refactor
+    private static TelegraphStory buildTelegraphStory(UserEntity person) {
+        BiographyEntity biographyEntity = person.getBiography();
+        Language language = person.getLanguage();
         TelegraphStory telegraphStory = new TelegraphStory();
 
         telegraphStory.setTitle(biographyEntity.getName());
-
         telegraphStory.create()
-                .addWithStrongP("DA lublu tebya")
+                .addWithStrongP(biographyEntity.getGender() + " ")
+                .addWithStrongP(biographyEntity.getAge() + " років")
                 .addImage("/file/b6e965265c7ee8db0cc20.jpg")
-                .addWithStrongP("))))");
+                .addWithStrongP(biographyEntity.getOverview());
 
         telegraphStory.build();
-        String storyLink;
-        if (userEntity.getLinkTelegraph() == null) {
-            storyLink = telegraphRestService.createTelegraphPage(telegraphStory);
-            userEntity.setLinkTelegraph(storyLink);
-        } else {
-            storyLink = userEntity.getLinkTelegraph();
-            telegraphRestService.editTelegraphStory(telegraphStory, storyLink);
-        }
+        return telegraphStory;
     }
 }

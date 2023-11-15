@@ -29,7 +29,7 @@ public class ReplyKeyboardMarkupBuilder {
     }
 
     public ReplyKeyboardMarkupBuilder nextRow() {
-        if (row != null && row.size() > 0) {
+        if (row != null && !row.isEmpty()) {
             keyboard.add(row);
         }
         row = new KeyboardRow();
@@ -37,7 +37,7 @@ public class ReplyKeyboardMarkupBuilder {
     }
 
     public ReplyKeyboardMarkup build() {
-        if (row.size() != 0) {
+        if (!row.isEmpty()) {
             keyboard.add(row);
         }
 

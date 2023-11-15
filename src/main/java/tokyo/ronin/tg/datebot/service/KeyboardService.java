@@ -2,6 +2,7 @@ package tokyo.ronin.tg.datebot.service;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+
 import tokyo.ronin.tg.datebot.constant.Language;
 import tokyo.ronin.tg.datebot.contoller.UserStatus;
 import tokyo.ronin.tg.datebot.keyboards.ReplyKeyboardMarkupHandler;
@@ -19,12 +20,15 @@ public class KeyboardService {
     }
 
     public ReplyKeyboardMarkup getKeyboard(Language language, UserStatus userStatus) {
-        return map.getOrDefault(userStatus, new ReplyKeyboardMarkupHandler.LocationKeyboard()).create(language);
+        return map.getOrDefault(userStatus, new ReplyKeyboardMarkupHandler.EmptyKeyBoard()).create(language);
     }
     // probable option with caching objects
 
     private void init() {
         map.put(UserStatus.SETTING_LOCATION, new ReplyKeyboardMarkupHandler.LocationKeyboard());
         map.put(UserStatus.DEFAULT, new ReplyKeyboardMarkupHandler.DefaultKeyboard());
+        map.put(UserStatus.BIOGRAPHY, new ReplyKeyboardMarkupHandler.BiographyKeyboard());
+        map.put(UserStatus.CV, new ReplyKeyboardMarkupHandler.CVKeyboard());
+        map.put(UserStatus.LANGUAGE, new ReplyKeyboardMarkupHandler.LanguagesKeyboard());
     }
 }

@@ -19,7 +19,7 @@ public class UserStateMachineLocation implements UserStateMachine {
 
     @Override
     public List<UserStatus> transitionStatuses() {
-        return List.of(UserStatus.DEFAULT);
+        return List.of(UserStatus.CV);
     }
 
     @Override

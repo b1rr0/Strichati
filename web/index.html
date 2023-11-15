@@ -6,40 +6,54 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body>
-<div class="container">
-    <div class="inner">
-        <div class="item">
-            <img src="1.png" alt="" class="img">
-            <button class="btn" id="btn1">Add</button>
-        </div>
-        <div class="item">
-            <img src="1.png" alt="" class="img">
-            <button class="btn" id="btn2">Add</button>
-        </div>
-        <div class="item">
-            <img src="1.png" alt="" class="img">
-            <button class="btn" id="btn3">Add</button>
-        </div>
-        <div class="item">
-            <img src="1.png" alt="" class="img">
-            <button class="btn" id="btn4">Add</button>
-        </div>
-        <div class="item">
-            <img src="1.png" alt="" class="img">
-            <button class="btn" id="btn5">Add</button>
-        </div>
-        <div class="item">
-            <img src="1.png" alt="" class="img">
-            <button class="btn" id="btn6">Add</button>
-        </div>
-    </div>
-</div>
-<div class="usercard" id="usercard">
 
+<div class="profile-form">
+    <h2>Ваш профиль</h2>
+    <form id="profileForm">
+        <div class="form-group">
+            <label for="name">Введите имя:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="about">О себе:</label>
+            <textarea id="about" name="about" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Возраст:</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+
+        <div class="form-group">
+            <label>Кого ищете:</label>
+            <label>
+                <input type="radio" name="gender" value="male"> Парень
+            </label>
+            <label>
+                <input type="radio" name="gender" value="female"> Девушку
+            </label>
+        </div>
+    </form>
 </div>
+<p id="rot">ROT HTML EBAL!!!!</p>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
+//
+var currentUrl = window.location.href;
+var urlParams = new URLSearchParams(currentUrl);
+
+// Получаем значение параметра 'name'
+var nameParam = urlParams.get('data');
+let v = currentUrl.replace('https://b1rr0.github.io/Strichati/web/?data=', '');
+v = v.replaceAll('%22', "\"");
+v = v.replaceAll('%20', " ");
+var data = JSON.parse(v);
+document.getElementById('rot').value = `${tg.initDataUnsafe.user.id}` || '';
+
+document.getElementById('name').value = data.name || '';
+document.getElementById('about').value = data.about || '';
+document.getElementById('age').value = data.age || '';

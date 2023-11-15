@@ -14,11 +14,15 @@ public class BiographyEntity {
     @GeneratedValue
     private UUID id;
     private String name;
-    private Instant age;
+    private int age;
     private String overview;
+    private String gender;
     @ElementCollection
     private List<String> interests;
     private Expectation expectation = Expectation.DEFAULT;
+
+    public BiographyEntity() {
+    }
 
     public UUID getId() {
         return id;
@@ -38,11 +42,11 @@ public class BiographyEntity {
         return this;
     }
 
-    public Instant getAge() {
+    public int getAge() {
         return age;
     }
 
-    public BiographyEntity setAge(Instant age) {
+    public BiographyEntity setAge(int age) {
         this.age = age;
         return this;
     }
@@ -71,6 +75,15 @@ public class BiographyEntity {
 
     public BiographyEntity setExpectation(Expectation expectation) {
         this.expectation = expectation;
+        return this;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public BiographyEntity setGender(String gender) {
+        this.gender = gender;
         return this;
     }
 }
